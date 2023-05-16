@@ -25,7 +25,7 @@ Route::post('/login', [Autentikasi::class, 'login']);
 Route::post('/logout', [Autentikasi::class, 'logout'])->middleware('auth:sanctum');
 
 
-Route::get('/ambilPost', [IkanController::class, 'ambilSemuaPost']);
+Route::get('/ambilPost', [IkanController::class, 'ambilSemuaPost'])->middleware('auth:sanctum');
 Route::get('/ikans/{id}', [IkanController::class, 'ambilPostSpesifik']);
 Route::post('/ikans', [IkanController::class, 'tambahPost']);
 Route::put('/ikans/{id}', [IkanController::class, 'ubahPost']);

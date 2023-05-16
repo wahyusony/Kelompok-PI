@@ -33,15 +33,15 @@ class IkanController extends Controller
         ]);
 
         if($validator->fails()){
-            return new PostResource(false, null, $validator->errors(),400);
+            return new IkanResource(false, null, $validator->errors(),400);
         }
         // upload image
         $image = $request->file('image');
-        $image->storeAs('public/ikan', $image->hashName());
-        $storagepath = 'http://localhost:8000/storage/ikan/';
+        $image->storeAs('public/ikans', $image->hashName());
+        $storagepath = 'http://localhost:8000/storage/ikans/';
 
         //create post
-        $post = Post::create([
+        $ikans = Ikan::create([
             'image'     => $storagepath.$image->hashName(),
             'nama_ikan'     => $request->nama_ikan,
             'jenis_ikan'   => $request->jenis_ikan,
@@ -67,13 +67,13 @@ class IkanController extends Controller
 
             //upload image
             $image = $request->file('image');
-            $image->storeAs('public/ikan', $image->hashName());
+            $image->storeAs('public/ikans', $image->hashName());
 
             //delete old image
-            Storage::delete('public/ikan/'.$ikan->image);
+            Storage::delete('public/ikans/'.$ikan->image);
 
             //set new image path
-            $storagepath = 'http://localhost:8000/storage/ikan/';
+            $storagepath = 'http://localhost:8000/storage/ikans/';
 
             //update post with new image
             $update = Ikan::where('id',$id)->update([

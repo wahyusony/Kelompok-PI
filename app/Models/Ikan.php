@@ -9,6 +9,7 @@ class Ikan extends Model
 {
     use HasFactory;
 
+    public $primaryKey = 'id';
     protected $fillable = [
         'image',
         'nama_ikan',
