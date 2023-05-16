@@ -2,7 +2,9 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\API\IkanController;
+use App\Http\Controllers\IkanController;
+use App\Http\Controllers\JenisIkanController;
+use App\Http\Controllers\PelabuhanController;
 use App\Http\Controllers\Autentikasi;
 
 /*
@@ -25,8 +27,15 @@ Route::post('/login', [Autentikasi::class, 'login']);
 Route::post('/logout', [Autentikasi::class, 'logout'])->middleware('auth:sanctum');
 
 
-Route::get('/ambilPost', [IkanController::class, 'ambilSemuaPost']);
-Route::get('/ikans/{id}', [IkanController::class, 'ambilPostSpesifik']);
-Route::post('/ikans', [IkanController::class, 'tambahPost']);
-Route::put('/ikans/{id}', [IkanController::class, 'ubahPost']);
-Route::delete('/ikans/{id}', [IkanController::class, 'hapusPost']);
+Route::get('/ikans', [IkanController::class, 'index']);
+Route::get('/ikans/id={id}', [IkanController::class, 'getById']);
+
+
+Route::get('/jenis-ikans', [JenisIkanController::class, 'index']);
+Route::get('/jenis-ikans/id={id}', [JenisIkanController::class, 'getById']);
+
+Route::get('/pelabuhans', [PelabuhanController::class, 'index']);
+Route::get('/pelabuhans/id={id}', [PelabuhanController::class, 'getById']);
+
+
+
