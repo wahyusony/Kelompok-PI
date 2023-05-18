@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GenerateTokenController; // Tambahkan penggunaan namespace GenerateTokenController
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +16,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::post('/generate-token', [GenerateTokenController::class, 'generateToken'])->name('generate.token');
+Route::post('/generate-token', [App\Http\Controllers\GenerateTokenController::class, 'generateToken'])->name('generate.token');
+Route::post('/generate-token', [GenerateTokenController::class, 'generateToken'])->name('generate.token');
+

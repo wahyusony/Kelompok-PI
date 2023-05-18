@@ -1,0 +1,41 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  h1 {
+    font-size: 20px;
+    margin-top: 0;
+  }
+  
+  h2 {
+    font-size: 16px;
+    margin-top: 10px;
+  }
+  
+  p {
+    margin-bottom: 10px;
+  }
+  
+  .container {
+    width: 500px;
+    margin: 0 auto;
+  }
+  
+  .form-group {
+    margin-bottom: 10px;
+  }
+  
+  .btn {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .btn-primary {
+    background-color: #000088;
+  }
+  

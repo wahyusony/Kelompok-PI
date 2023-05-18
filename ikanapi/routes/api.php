@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\IkanController;
 use App\Http\Controllers\API\JenisIkanController;
 use App\Http\Controllers\API\PelabuhanController;
+use App\Http\Controllers\GenerateTokenController;
 use App\Http\Controllers\API\AuthController;
 
 /*
@@ -21,6 +22,10 @@ use App\Http\Controllers\API\AuthController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::post('/generate-token', [GenerateTokenController::class, 'generateToken'])->middleware('auth:api');
+
 
 Route::post('/registrasi', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
@@ -43,3 +48,5 @@ Route::get('/pelabuhans/{id_pelabuhan}', [PelabuhanController::class, 'tampilByI
 Route::post('/pelabuhans', [PelabuhanController::class, 'tambahData']);
 Route::put('/pelabuhans/{id_pelabuhan}', [PelabuhanController::class, 'updateData']);
 Route::delete('/pelabuhans/{id_pelabuhan}', [PelabuhanController::class, 'destroyData']);
+
+
