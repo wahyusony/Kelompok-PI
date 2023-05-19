@@ -15,14 +15,21 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.login');
-});
+Route::get('/home', function () {
+    return view('index');
+})->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/generate-token', [GenerateTokenController::class, 'generateToken'])->name('generate.token');
 Route::post('/generate-token', [App\Http\Controllers\GenerateTokenController::class, 'generateToken'])->name('generate.token');
 Route::post('/generate-token', [GenerateTokenController::class, 'generateToken'])->name('generate.token');
+
+Route::view('/ikan', 'ikan');
+Route::view('/pelabuhan', 'pelabuhan');
+Route::view('/token-api', 'token-api');
+
+
+
 
