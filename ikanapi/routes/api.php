@@ -27,7 +27,7 @@ Route::post('/registrasi', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth:sanctum');
 
-Route::get('/ambilData', [IkanController::class, 'ambilSemuaData']);
+Route::get('/ambilData', [IkanController::class, 'ambilSemuaData'])->middleware('auth:sanctum');
 Route::get('/ikans/{id_ikan}', [IkanController::class, 'ambilDataSpesifik']);
 Route::post('/ikans', [IkanController::class, 'tambahData']);
 Route::put('/ikans/{id_ikan}', [IkanController::class, 'ubahData']);
@@ -39,7 +39,7 @@ Route::post('/pemasoks', [PemasokController::class, 'tambahData']);
 Route::put('/pemasoks/{id_pemasok}', [PemasokController::class, 'ubahData']);
 Route::delete('/pemasoks/{id_pemasok}', [PemasokController::class, 'hapusData']);
 
-Route::get('/semuaPelabuhan', [PelabuhanController::class, 'tampilSemuaPelabuhan']);
+Route::get('/semuaPelabuhan', [PelabuhanController::class, 'tampilSemuaPelabuhan'])->middleware('auth:sanctum');
 Route::get('/pelabuhans/{id_pelabuhan}', [PelabuhanController::class, 'tampilById']);
 Route::post('/pelabuhans', [PelabuhanController::class, 'tambahData']);
 Route::put('/pelabuhans/{id_pelabuhan}', [PelabuhanController::class, 'updateData']);
