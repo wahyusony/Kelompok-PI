@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('jenis_ikans', function (Blueprint $table) {
-            $table->id_jenis_ikan();
-            $table->string('jenis_ikan');
-            $table->string('keterangan');
+        Schema::create('pelabuhans', function (Blueprint $table) {
+            $table->bigIncrements('id_pelabuhan');
+            $table->string('pelabuhan', 100);
+            $table->string('lokasi', 100);
+            $table->text('deskripsi');
             $table->timestamps();
         });
     }
@@ -24,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('jenis_ikans');
+        Schema::dropIfExists('pelabuhans');
     }
 };

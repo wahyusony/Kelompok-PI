@@ -12,9 +12,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('ikans', function (Blueprint $table) {
-            $table->id();
-            $table->string('nama_ikan');
-            $table->string('keterangan');
+            $table->bigIncrements('id_ikan');
+            $table->string('image');
+            $table->string('nama_ikan', 100);
+            $table->string('jenis_ikan', 100);
+            $table->date('tgl_tiba');
+            $table->bigInteger('harga');
+            $table->foreign('id_pelabuhan')
+                    ->references('id_pelabuhan')->on('pelabuhans')->onDelete('cascade');
+            $table->text('keterangan');
             $table->timestamps();
         });
     }

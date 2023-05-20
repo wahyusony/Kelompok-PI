@@ -30,7 +30,7 @@ class PelabuhanController extends Controller
     public function tambahData(Request $request){
         $validator = Validator::make($request->all(), [
             'pelabuhan' => 'required',
-            'alamat' => 'required',
+            'lokasi' => 'required',
             'deskripsi' => 'required',
         ]);
 
@@ -40,7 +40,7 @@ class PelabuhanController extends Controller
 
         $pelabuhan = Pelabuhan::create([
             'pelabuhan'   => $request->pelabuhan,
-            'alamat'   => $request->alamat,
+            'lokasi'   => $request->lokasi,
             'deskripsi'   => $request->deskripsi,
         ]);
 
@@ -51,7 +51,7 @@ class PelabuhanController extends Controller
     public function updateData(Request $request,$id_pelabuhan){
         $validator = Validator::make($request->all(), [
             'pelabuhan' => 'required',
-            'alamat' => 'required',
+            'lokasi' => 'required',
             'deskripsi' => 'required',
         ]);
 
@@ -59,9 +59,9 @@ class PelabuhanController extends Controller
             return new PelabuhanResource(false, null, $validator->errors(),400);
         }
 
-        $update = Pelabuhan::where('id',$id_pelabuhan)->update([
+        $update = Pelabuhan::where('id_pelabuhan',$id_pelabuhan)->update([
             'pelabuhan'   => $request->pelabuhan,
-            'alamat'   => $request->alamat,
+            'lokasi'   => $request->lokasi,
             'deskripsi'   => $request->deskripsi,
         ]);
 

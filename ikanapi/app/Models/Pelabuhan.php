@@ -9,9 +9,13 @@ class Pelabuhan extends Model
 {
     use HasFactory;
 
+    protected $table = 'pelabuhans';
+
+    protected $primaryKey = 'id_pelabuhan';
+
     protected $fillable = [
-        'pelabuhan', 
-        'alamat', 
+        'pelabuhan',
+        'lokasi',
         'deskripsi',
     ];
 }

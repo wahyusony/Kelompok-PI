@@ -5,32 +5,36 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Ikan;
+use App\Models\Pelabuhan;
 use App\Http\Resources\IkanResource;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 class IkanController extends Controller
 {
     public function ambilSemuaData(){
-        $asset=DB::table('ikans')
-        ->join('jenis_ikans','ikans.id','=','jenis_ikans.id')
-        ->join('pelabuhans','ikans.id','=','pelabuhans.id')
+        $getIkan=DB::table('ikans')
+        ->join('pelabuhans','ikans.id_pelabuhan','=','pelabuhans.id_pelabuhan')
         ->select(
-            'ikans.id as id',
+            'ikans.image as image',
+            'ikans.id_ikan as id_ikan',
             'ikans.nama_ikan as nama_ikan',
-            'jenis_ikans.jenis_ikan as jenis_ikan',
+            'ikans.jenis_ikan as jenis_ikan',
+            'ikans.tgl_tiba as tgl_tiba',
+            'ikans.harga as harga',
             'pelabuhans.pelabuhan as pelabuhan',
             'ikans.keterangan as keterangan',
         )
         ->get();
         $ikans = Ikan::all();
 
-        return new IkanResource(true,'Data berhasil diambil',$asset,200);
+        return new IkanResource(true,'Data berhasil diambil',$getIkan,200);
     }
 
-    public function ambilDataSpesifik(int $id){
-        $ikan = Ikan::find($id);
+    public function ambilDataSpesifik(int $id_ikan){
+        $ikan = Ikan::find($id_ikan);
         if($ikan){
             return new IkanResource(true,'Data berhasil diambil',$ikan,200);
         }else{
@@ -41,7 +45,11 @@ class IkanController extends Controller
     public function tambahData(Request $request){
         $validator = Validator::make($request->all(), [
             'nama_ikan' => 'required',
+            'jenis_ikan' => 'required',
             'keterangan' => 'required',
+            'tgl_tiba' => 'required',
+            'harga' => 'required',
+            'id_pelabuhan' => 'required',
             'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
@@ -55,19 +63,27 @@ class IkanController extends Controller
 
         //create post
         $ikan = Ikan::create([
-            'image'     => $storagepath.$image->hashName(),
-            'nama_ikan'     => $request->nama_ikan,
-            'keterangan'   => $request->keterangan,
+            'image' => $storagepath.$image->hashName(),
+            'nama_ikan' => $request->nama_ikan,
+            'jenis_ikan' => $request->jenis_ikan,
+            'tgl_tiba' => $request->tgl_tiba,
+            'harga' => $request->harga,
+            'id_pelabuhan' => $request->id_pelabuhan,
+            'keterangan' => $request->keterangan,
         ]);
 
         //return response
         return new IkanResource(true, 'Data Post Berhasil Ditambahkan!', $ikan, 200);
     }
 
-    public function ubahData(Request $request,$id){
+    public function ubahData(Request $request,$id_ikan){
         $validator = Validator::make($request->all(), [
-            'image'     => $storagepath.$image->hashName(),
-            'nama_ikan'     => $request->nama_ikan,
+            'image' => $storagepath.$image->hashName(),
+            'nama_ikan' => $request->nama_ikan,
+            'jenis_ikan' => $request->jenis_ikan,
+            'tgl_tiba' => $request->tgl_tiba,
+            'harga' => $request->harga,
+            'id_pelabuhan' => $request->id_pelabuhan,
             'keterangan' => $request->keterangan,
         ]);
 
@@ -90,28 +106,36 @@ class IkanController extends Controller
             $storagepath = 'http://localhost:8000/storage/ikans/';
 
             //update post with new image
-            $update = Ikan::where('id',$id)->update([
+            $update = Ikan::where('id_ikan',$id_ikan)->update([
                 'image' => $storagepath.$image->hashName(),
                 'nama_ikan' => $request->nama_ikan,
+                'jenis_ikan' => $request->jenis_ikan,
+                'tgl_tiba' => $request->tgl_tiba,
+                'harga' => $request->harga,
+                'id_pelabuhan' => $request->id_pelabuhan,
                 'keterangan' => $request->keterangan,
             ]);
 
         } else {
             //update post without image
-            $update = Ikan::where('id',$id)->update([
+            $update = Ikan::where('id_ikan',$id_ikan)->update([
                 'nama_ikan' => $request->nama_ikan,
+                'jenis_ikan' => $request->jenis_ikan,
+                'tgl_tiba' => $request->tgl_tiba,
+                'harga' => $request->harga,
+                'id_pelabuhan' => $request->id_pelabuhan,
                 'keterangan' => $request->keterangan,
             ]);
         }
 
-        $ikan = Ikan::find($id);
+        $ikan = Ikan::find($id_ikan);
 
         //return response
         return new IkanResource(true, 'Data Post Berhasil Diubah!', $ikan,200);
     }
 
-    public function hapusData($id){
-        $ikan = Ikan::find($id);
+    public function hapusData($id_ikan){
+        $ikan = Ikan::find($id_ikan);
         if($ikan){
             $ikan->delete();
             return new IkanResource(true,'Data berhasil dihapus',$ikan,200);
