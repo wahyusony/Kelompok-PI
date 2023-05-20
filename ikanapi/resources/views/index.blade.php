@@ -124,7 +124,7 @@
             </div>
             <form action="{{ route('generate.token') }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-success btn-lg">Generate API Token Anda Disini</button>
+                <button type="submit" class="btn btn-light btn-lg">Generate API Token Anda Disini</button>
             </form>
         </div>
         <div class="col-lg-5 order-8 order-lg-2 text-end d-flex justify-content-end">
