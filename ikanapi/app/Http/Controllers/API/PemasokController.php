@@ -16,7 +16,7 @@ class PemasokController extends Controller
 
         return new PemasokResource(true,'Data berhasil diambil',$pemasoks,200);
     }
-
+        
     public function getById(int $id_pemasok)
     {
         $pemasok = Pemasok::find($id_pemasok);
@@ -80,6 +80,12 @@ class PemasokController extends Controller
         }else{
             return new PemasokResource(false,'Data tidak ditemukan',null,404);
         }
+    }
+
+    public function getPemasok()
+    {
+        $pemasoks = Pemasok::all();
+        return response()->json($pemasoks);
     }
 }
 

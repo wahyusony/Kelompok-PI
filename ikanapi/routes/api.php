@@ -50,3 +50,12 @@ Route::get('/transaksis/{id_transaksi}', [TransaksiController::class, 'tampilByI
 Route::post('/transaksis', [TransaksiController::class, 'tambahData']);
 Route::put('/transaksis/{id_transaksi}', [TransaksiController::class, 'updateData']);
 Route::delete('/transaksis/{id_transaksi}', [TransaksiController::class, 'destroyData']);
+
+Route::post('/generate-token', [GenerateTokenController::class, 'generateToken'])->middleware('auth:api');
+Route::get('/api-token', [GenerateTokenController::class, 'showToken'])->middleware('auth:api');
+Route::delete('/delete-token', [GenerateTokenController::class, 'deleteToken'])->middleware('auth:api');
+
+Route::get('/pelabuhans', [PelabuhanController::class, 'index']);
+Route::get('/transaksis', [TransaksiController::class, 'index']);
+Route::get('/transaksis', [TransaksiController::class, 'apiIndex']);
+Route::get('/pemasok', [App\Http\Controllers\Api\PemasokController::class, 'getPemasok']);

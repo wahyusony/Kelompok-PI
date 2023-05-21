@@ -10,6 +10,12 @@ use Illuminate\Support\Facades\Validator;
 
 class PelabuhanController extends Controller
 {
+    public function index()
+    {
+    $pelabuhans = Pelabuhan::all();
+    return response()->json($pelabuhans);
+    }
+    
     public function tampilSemuaPelabuhan()
     {
         $pelabuhans = Pelabuhan::all();

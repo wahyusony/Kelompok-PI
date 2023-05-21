@@ -13,6 +13,16 @@ use Illuminate\Support\Facades\DB;
 
 class TransaksiController extends Controller
 {
+    public function index()
+    {
+        return view('home');
+    }
+
+    public function apiIndex()
+    {
+        return Transaksi::all();
+    }
+
     public function tampilSemuaTransaksi()
     {
         $getTransaksi=DB::table('transaksis')
