@@ -16,11 +16,11 @@ class TransaksiController extends Controller
     public function tampilSemuaTransaksi()
     {
         $getTransaksi=DB::table('transaksis')
-        ->join('ikans','transaksis.id_ikan','=','ikans.id_ikan')
-        ->join('pemasoks','transaksis.id_pemasok','=','pemasoks.id_pemasok')
+        ->leftjoin('ikans','transaksis.id_ikan','=','ikans.id_ikan')
+        ->leftJoin('pemasoks','transaksis.id_pemasok','=','pemasoks.id_pemasok')
         ->select(
-            'ikans.id_ikan as id_ikan',
-            'pemasoks.id_pemasok as id_pemasok',
+            'ikans.nama_ikan as nama_ikan',
+            'pemasoks.nama_pemasok as nama_pemasok',
             'transaksis.jumlah as jumlah',
             'transaksis.tgl_transaksi as tgl_transaksi',
         )

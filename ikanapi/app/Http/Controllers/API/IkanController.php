@@ -73,23 +73,28 @@ class IkanController extends Controller
         ]);
 
         //return response
-        return new IkanResource(true, 'Data Post Berhasil Ditambahkan!', $ikan, 200);
+        return new IkanResource(true, 'Data Berhasil Ditambahkan!', $ikan, 200);
     }
 
     public function ubahData(Request $request,$id_ikan){
         $validator = Validator::make($request->all(), [
-            'image' => $storagepath.$image->hashName(),
-            'nama_ikan' => $request->nama_ikan,
-            'jenis_ikan' => $request->jenis_ikan,
-            'tgl_tiba' => $request->tgl_tiba,
-            'harga' => $request->harga,
-            'id_pelabuhan' => $request->id_pelabuhan,
-            'keterangan' => $request->keterangan,
+            'nama_ikan' => 'required',
+            'jenis_ikan' => 'required',
+            'tgl_tiba' => 'required',
+            'harga' => 'required',
+            'id_pelabuhan' => 'required',
+            'keterangan' => 'required',
         ]);
 
         if($validator->fails()){
             return new IkanResource(false, null, $validator->errors(),400);
         }
+
+        $late_post = Ikan::find($id_ikan);
+
+        /*$getImage = $latepost->image;
+        $separateImgUrl = explode("/", $getImage);
+        $newImage = $separateImgUrl[5];*/
 
         // upload image
         //check if image is not empty
@@ -100,7 +105,7 @@ class IkanController extends Controller
             $image->storeAs('public/ikans', $image->hashName());
 
             //delete old image
-            Storage::delete('public/ikans/'.$ikan->image);
+            Storage::delete('public/ikans/'.$late_post->image);
 
             //set new image path
             $storagepath = 'http://localhost:8000/storage/ikans/';
@@ -131,7 +136,7 @@ class IkanController extends Controller
         $ikan = Ikan::find($id_ikan);
 
         //return response
-        return new IkanResource(true, 'Data Post Berhasil Diubah!', $ikan,200);
+        return new IkanResource(true, 'Data Berhasil Diubah!', $ikan,200);
     }
 
     public function hapusData($id_ikan){

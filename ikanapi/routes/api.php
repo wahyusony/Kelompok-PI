@@ -45,7 +45,7 @@ Route::post('/pelabuhans', [PelabuhanController::class, 'tambahData']);
 Route::put('/pelabuhans/{id_pelabuhan}', [PelabuhanController::class, 'updateData']);
 Route::delete('/pelabuhans/{id_pelabuhan}', [PelabuhanController::class, 'destroyData']);
 
-Route::get('/semuaTransaksi', [TransaksiController::class, 'tampilSemuaPelabuhan'])->middleware('auth:sanctum');
+Route::get('/semuaTransaksi', [TransaksiController::class, 'tampilSemuaTransaksi'])->middleware('auth:sanctum');
 Route::get('/transaksis/{id_transaksi}', [TransaksiController::class, 'tampilById']);
 Route::post('/transaksis', [TransaksiController::class, 'tambahData']);
 Route::put('/transaksis/{id_transaksi}', [TransaksiController::class, 'updateData']);
