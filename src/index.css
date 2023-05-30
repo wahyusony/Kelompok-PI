@@ -1,0 +1,226 @@
+:root {
+  --background: #fff;
+  --text-primary: #000;
+  --text-primary-1: #fff;
+  --text-primary-2: #6c757d;
+  --text-secondary: #fefefe;
+}
+
+[data-theme='dark']{
+  --background: #000;
+  --text-primary: #fff;
+  --text-primary-1: #000;
+  --text-primary-2: #888888;
+  --text-secondary: #333;
+}
+
+*,
+:after,
+:before{
+  box-sizing: border-box
+}
+
+html{
+  font-family: sans-serif;
+  line-height: 1.15;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -ms-overflow-style: scrollbar;
+  -webkit-tap-highlight-color: transparent
+}
+
+@-ms-viewport{
+  width: device-width
+}
+
+article,
+aside,
+dialog,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section{
+  display: block;
+}
+
+body{
+  margin: 0;
+  height: 100%;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: #212529;
+  text-align: left;
+  overflow-x: hidden;
+}
+
+img{
+  width: 100%;
+  height: auto;
+}
+
+/* Navbar */
+
+nav.navbar{
+  padding: 10px 120px 0px 10px;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 200;
+  transition: 0.3s ease-in-out;
+}
+
+nav.navbar a.navbar-barand {
+  width: 50%;
+  color: #000;
+  font-family: Georgia, 'Times New Roman', Times, serif;
+  font-weight: 1000;
+  text-shadow: 4px 2px 4px rgba(0, 0, 0, 0.3) ;
+}
+
+nav.navbar .navbar-nav .nav-link.navbar-link{
+  font-family: Montserrat, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  padding: 0 20px;
+  letter-spacing: 0.8px;
+  opacity: 0.8;
+  color: #000;
+}
+
+nav.navbar .navbar-nav .nav-link.navbar-link:hover, 
+nav.navbar .navbar-nav .nav-link.navbar-link.active{
+  opacity: 1;
+}
+
+nav.navbar .navbar-text i,
+nav.navbar .navbar-nav .nav-link.navbar-link i {
+  display: none;
+}
+
+nav.navbar span.navbar-text{
+  display: flex;
+  align-items: center;
+}
+
+nav.navbar span.navbar-text button{
+  font-weight: 600;
+  color: #000;
+  border: 1px solid #000;
+  border-radius: 35%;
+  padding: 10px 30px;
+  font-size: 18px;
+  margin-right: 3px;
+  position: relative;
+  background-color: transparent;
+  transition: 0.32s ease-in-out;
+}
+
+/*Home Section*/
+.home {
+  position: relative;
+  background-color: #fff;
+  height: 100vh;
+  top: 0;
+  padding: 240px 50px 100px 0px;
+  background-image: url('./assets/img/bg-hero.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+
+.home .tagline{
+  color: #fff;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  padding: 8px 10px;
+  font-size: 20px;
+  margin-bottom: 18px;
+  display: inline-block;
+  background: linear-gradient(90.21deg rgba(38, 159, 147, 0.5) 10%, rgba(26, 2, 131, 0.5) 90%);
+  border:1px solid rgba(255, 255, 255, 0.5);
+
+}
+
+.home h1{
+  color: #000;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  font-size: 50px;
+  line-height: 1em;
+  margin-bottom: 20px;
+  display: block;
+  width: 90%;
+}
+
+.home p{
+  color: #201c1c;
+  letter-spacing: 0.8px;
+  font-size: 18px;
+  line-height: 1.5em;
+  width: 90%;
+}
+.home .image{
+  width: 100%;
+}
+.home .image img{
+  animation: updown 3s linier infinite;
+}
+
+
+
+.home1{
+  background-color: #fff;
+  height: auto;
+  top: 0;
+  padding: 105px 50px 50px 0px;
+  background-image: url('./assets/img/bg-hero.jpg');
+  background-position: top center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;600;700&family=Lexend+Deca:wght@100;200;300;400;500;600;700&family=Poppins:wght@300;400;600&display=swap');
+
+
+table {
+  margin: 1rem auto;
+  border-radius: 1rem;
+  border: 1rem hidden #443C68;
+  border-collapse: collapse;
+  box-shadow: 0 0 0 1px black;
+  overflow: hidden;
+  max-width: 5rem;
+}
+
+
+thead {
+  font-size: 1.1rem;
+  background-color: #443C68;
+  color: #fff;
+}
+
+th,
+td {
+  border: 1px solid #443C68;
+  min-width: 12rem;
+  padding: 1rem;
+  line-height: 0.8;
+}
+
+td {
+  font-size: 1rem;
+}
+
+.button-group {
+  margin-top: 5px;
+}
+.button-group button {
+  margin-right: 5px;
+}
